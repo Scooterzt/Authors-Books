@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Book</title>
+    <style>
+        *{
+            margin: 10px;
+        }
+        body{
+            margin-left: 50px;
+        }
+        .addbook{
+            display: inline-block;
+            background-color: beige;
+            width: 300px;
+            height: 300px;
+            vertical-align: top;
+        }
+        .table{
+            display: inline-block;
+            background-color: azure;
+            width: 400px;
+            vertical-align: top;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+        th {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="addbook">
+        <h1>Add Book</h1>
+        <form action="/add_book" method="POST">
+            {% csrf_token %}
+        Title: <input type="text" name="book_title" value=""><br>
+        Description:<br>
+        <!-- <input type="text" name="book_disc" maxlength="255"><br> -->
+        <textarea name="book_disc" cols="30" rows="5"></textarea><br>
+        <input type="submit" name="submit" value="Add" style="width: 100px">
+        </form>
+        <form action="/authors">
+            <input type="submit" value="Authora Page" style="width: 100px">
+        </form>
+    </div>
+    <div class="table">
+        <table>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>Action</th>
+            </tr>
+            {% for book in all_books %}
+            <tr>
+                <td>{{book.id}}</td>
+                <td>{{book.title}}</td>
+                <td><a href="/books/{{book.id}}">View</a></td>
+            </tr>
+            {% endfor %}    
+        </table>
+    </div>
+</body>
+</html>
