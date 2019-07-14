@@ -16,8 +16,8 @@ def authors(request):
     return render(request,"book_author_app/authors.html", context)
 
 def add_book(request):
-    new_book = Book.objects.create(title=request.POST['book_title'], description=request.POST['book_disc'])
-    return redirect ("/books")
+        new_book = Book.objects.create(title=request.POST['book_title'], description=request.POST['book_disc'])
+        return redirect ("/books")
 def add_author(request):
     new_author = Author.objects.create(name=request.POST['a_name'], notes=request.POST['notes'])
     return redirect("/authors")
@@ -50,3 +50,10 @@ def add_book_to_author(request, author_id):
     book1 = Book.objects.get(id=request.POST["select_book_to_add"])
     author.books.add(book1)
     return redirect(f"/authors/{author_id}")
+
+def delete_book(request, book_id):
+    Book.objects.get(id=book_id).delete()
+    return redirect ("/books")
+def delete_author(request, author_id):
+    Author.objects.get(id=author_id).delete()
+    return redirect ("/authors")

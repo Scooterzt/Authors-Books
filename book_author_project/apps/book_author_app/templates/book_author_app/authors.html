@@ -16,7 +16,6 @@
             display: inline-block;
             background-color: beige;
             width: 300px;
-            height: 300px;
             vertical-align: top;
         }
         .table{
@@ -42,7 +41,7 @@
         <h1>Add Author</h1>
         <form action="/add_author" method="POST">
             {% csrf_token %}
-        Name: <input type="text" name="a_name" value=""><br>
+        Name: <input type="text" name="a_name" required="required"><br>
         Notes:<br>
         <textarea name="notes" cols="30" rows="5"></textarea><br>
         <!-- <input type="text" name="notes" value=""><br> -->
